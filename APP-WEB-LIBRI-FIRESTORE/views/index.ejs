@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ATIVIDADE - REDE SOCIAL</title>
+
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+
+        <h1>ATIVIDADE - REDE SOCIAL</h1>
+
+        <div class="content">
+            <form id="add-post-form">
+
+            
+                <input type="text" name="tituloPost" id="tituloPost" placeholder="Digite o titulo do post aqui" required>
+                <input type="text" name="conteudoPost" id="conteudoPost" placeholder="Digite o conteúdo do post aqui" required>
+
+                <button>POSTAR</button>
+            </form>
+            <ul id="post-list"> </ul>
+        </div>
+        
+    </body>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        // Use 'var' para garantir que 'db' e 'socket' sejam globais
+        var db; 
+        var socket;
+
+        /* DADOS DE CREDENCIAS DE ACESSO AO FIREBASE */
+        const firebaseConfig = {
+            apiKey: "AIzaSyD1JHjhKdzXxU-dno5ExSkB2mA5JQpxqSo",
+            authDomain: "novo-app-libri.firebaseapp.com",
+            projectId: "novo-app-libri",
+            storageBucket: "novo-app-libri.firebasestorage.app",
+            messagingSenderId: "220338931805",
+            appId: "1:220338931805:web:df020b1fa0e4ac8b4ea5b4",
+            measurementId: "G-ZGNEFTY3PV"
+        };
+        firebase.initializeApp(firebaseConfig);
+        
+        const firestore = firebase.firestore();
+        const settings = {timestampsInSnapshots: true};
+        firestore.settings(settings);
+        
+        // CORREÇÃO CRÍTICA: Atribui a instância do FireStore à variável global 'db'
+        db = firestore;
+        
+        // CRIAÇÃO DO SOCKET.IO (também global)
+        socket = io();
+
+        console.log('TESTE DE CONEXÃO COM O FIRESTORE:');
+        console.log(db);
+        
+    </script>
+
+    <script src="app.js"></script>
+
+</html>
