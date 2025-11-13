@@ -1,0 +1,184 @@
+/* =================================================================
+   1. CONFIGURAÇÃO GLOBAL E VARIÁVEIS DE CORES
+   (Moderno, Sofisticado, Minimalista)
+   ================================================================= */
+:root {
+    --cor-primaria: #007AFF;    /* Um azul moderno e acessível (Apple Blue) */
+    --cor-sucesso: #34C759;     /* Verde para o botão Postar */
+    --fundo-pagina: #f4f7f6;    /* Fundo cinza-claro muito sutil */
+    --fundo-conteudo: #ffffff;  /* Branco puro para o "cartão" de conteúdo */
+    --cor-texto: #333333;       /* Cor de texto principal (escuro, não preto) */
+    --cor-texto-secundaria: #888888; /* Cinza para placeholders e timestamps */
+    --cor-borda: #e0e0e0;       /* Borda suave para divisões e inputs */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --fonte-padrao: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Reset básico e tipografia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Essencial para responsividade */
+}
+
+body {
+    font-family: var(--fonte-padrao);
+    background-color: var(--fundo-pagina);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* =================================================================
+   2. LAYOUT PRINCIPAL E TÍTULO
+   (Limpo, Focado em UI/UX)
+   ================================================================= */
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    padding: 2.5rem 1rem; /* Mais respiro (espaço em branco) */
+}
+
+.content {
+    max-width: 800px; /* Define uma largura máxima de leitura */
+    margin: 0 auto 2rem auto; /* Centraliza o "cartão" */
+    padding: 2rem;
+    background-color: var(--fundo-conteudo);
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+}
+
+/* =================================================================
+   3. FORMULÁRIO DE POSTAGEM
+   (Responsivo, UI/UX)
+   ================================================================= */
+
+#add-post-form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+    gap: 1rem; /* Espaçamento moderno entre os itens do formulário */
+    
+    /* Linha sutil para separar o formulário da lista */
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#add-post-form input[type="text"] {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--fonte-padrao);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    
+    /* Transição suave para foco */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* UX: Destaque visual ao focar no input */
+#add-post-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Gerenciamento de espaço (Flexbox) */
+#tituloPost {
+    flex: 1 1 200px; /* Título: cresce 1, base de 200px */
+}
+
+#conteudoPost {
+    flex: 2 1 300px; /* Conteúdo: cresce 2x, base de 300px */
+}
+
+#add-post-form button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--cor-sucesso);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#add-post-form button:hover {
+    background-color: #2aaa4c; /* Tom mais escuro no hover */
+}
+
+/* =================================================================
+   4. LISTA DE POSTS
+   (Minimalista)
+   ================================================================= */
+
+#post-list {
+    list-style: none; /* Remove os marcadores de lista */
+}
+
+/* Estilização dos <li> que serão criados pelo JavaScript.
+   Assumindo a estrutura <li><h4>Título</h4><p>Conteúdo</p><span>Data</span></li>
+   para um bom UI/UX, conforme a imagem de exemplo.
+*/
+
+#post-list li {
+    padding: 1.25rem 0.5rem;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+#post-list li:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+#post-list h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    margin-bottom: 0.25rem;
+}
+
+#post-list p {
+    font-size: 1rem;
+    color: var(--cor-texto);
+    margin-bottom: 0.75rem;
+    word-wrap: break-word; /* Garante que o texto não estoure */
+}
+
+#post-list span {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundaria);
+    font-style: italic;
+}
+
+/* =================================================================
+   5. RESPONSIVIDADE
+   (Mobile-First Thinking)
+   ================================================================= */
+
+@media (max-width: 768px) {
+    /* Ajusta o título para telas menores */
+    h1 {
+        font-size: 1.8rem;
+        padding: 2rem 1rem;
+    }
+
+    /* Ajusta o "cartão" de conteúdo */
+    .content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    /* Faz os inputs e o botão ocuparem 100% da largura
+       e se empilharem verticalmente no formulário.
+    */
+    #tituloPost,
+    #conteudoPost,
+    #add-post-form button {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}

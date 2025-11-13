@@ -1,103 +1,355 @@
-body{
-    background: #999;
-    font-family: ubuntu;
+/* =================================================================
+   1. CONFIGURAÇÃO GLOBAL E VARIÁVEIS DE CORES
+   ================================================================= */
+:root {
+    /* Cores Primárias */
+    --cor-primaria: #4285F4;    /* Azul para ações principais */
+    
+    /* Cores de Fundo */
+    --fundo-pagina: #282c34;    /* Fundo escuro (charcoal gray) */
+    --fundo-card: #3a3f4a;      /* Fundo dos cards e elementos (dark slate gray) */
+    --fundo-input: #4b525e;     /* Fundo dos inputs e posts individuais */
+    
+    /* Cores de Texto */
+    --cor-texto-clara: #e0e0e0; /* Texto principal */
+    --cor-texto-escura: #f0f0f0;/* Títulos e detalhes */
+    --cor-placeholder: #a0a0a0; /* Placeholder */
+    --cor-data: #9da5b4;        /* Cor da data/hora */
+    --cor-delete: #ff5c5c;      /* Vermelho para o botão de deletar */
+    
+    /* Bordas e Sombras */
+    --cor-borda-suave: #4b525e; 
+    --sombra-card: 0 6px 15px rgba(0, 0, 0, 0.2); 
+    --sombra-foco: 0 0 0 3px rgba(66, 133, 244, 0.4); 
+
+    /* Tipografia */
+    --fonte-padrao: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --fonte-titulo: "Poppins", "Inter", sans-serif;
 }
 
-h1{
-    color: #fff;
-    font-size: 64px;
-    letter-spacing: 2px;
-    margin-top: 80px;
-    text-align: center;
-}
+/* Importar fontes do Google Fonts (opcional, mas recomendado) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap');
 
-.content{
-    background: #fff;
-    max-width: 960px;
-    margin: 30px auto;
-    padding:  20px 30px;
-    border-radius: 10px;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.1)
-}
-
-ul{
-    list-style-type: none;
-    padding: 0;
-}
-
-li{
-    padding: 20px;
-    margin-bottom: 5px;
-    background: #f6f6f6;
-    font-size: 20px;
-    color: #555;
-    position: relative;
-    border-bottom: 1px solid #e6e6e6;
-    height: 46px;
-}
-
-li:nth-child(even){
-    padding: 20px;
-    background: #f2f2f2;
-}
-
-li span{
-    display: block;
-}
-
-li span:nth-child(2){
-    font-size: 16px;
-    margin-top: 6px;
-    color: #999;
-}
-
-li div{
-    position: absolute;
-    top: 0;
-    right: 0px;
-    background: rgba(255,255,255,0.6);
-    width: 40px;
-    text-align: center;
-    padding: 10px 0;
-    font-weight:  bold;
-    cursor:  pointer;
-}
-
-form input{
-    float: left;
-    width: 38%;
+/* Reset básico e tipografia */
+* {
     margin: 0;
-    border: 0;
-    border-bottom: 1px solid #eee;
-    margin: 0 1%;
-    padding: 10px;
-    display: block;
-    box-sizing: border-box;
-    font-size: 18px;
+    padding: 0;
+    box-sizing: border-box; 
 }
 
-form input:focus{
+body {
+    font-family: var(--fonte-padrao);
+    background-color: var(--fundo-pagina);
+    color: var(--cor-texto-clara);
+    line-height: 1.6;
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start; 
+    min-height: 100vh; 
+    padding: 2rem 1rem; 
+}
+
+/* Título Principal */
+h1 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-texto-escura);
+    font-size: 2.8rem; 
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 2.5rem 0; 
+    letter-spacing: -0.8px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Container Principal (o cartão central) */
+.content {
+    background: var(--fundo-card);
+    max-width: 750px; 
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 2.5rem; 
+    border-radius: 12px;
+    box-shadow: var(--sombra-card);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; 
+}
+
+/* =================================================================
+   2. ESTILOS DO FORMULÁRIO DE POSTAGEM
+   ================================================================= */
+
+#add-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+#add-post-form input[type="text"] {
+    padding: 0.9rem 1.2rem; 
+    border: 1px solid var(--cor-borda-suave);
+    background-color: var(--fundo-input);
+    color: var(--cor-texto-clara);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#add-post-form input[type="text"]::placeholder {
+    color: var(--cor-placeholder);
+}
+
+#add-post-form input[type="text"]:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: var(--sombra-foco);
     outline: none;
-    border-bottom: 3px solid #88236f;
-    padding-bottom: 8px;
-    transition: all ease 0.2s;
 }
 
-form:after{
-    content: '';
-    clear: both;
-    display: block;
+#add-post-form button {
+    background-color: var(--cor-primaria); 
+    color: white;
+    padding: 0.9rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    letter-spacing: 0.5px;
 }
 
-button{
-    border: 0;
-    background: #fff;
-    border-radius: 10px;
-    padding: 13px;
-    width: 14%;
-    box-shadow: -1px 0px 1px rgba(0,0,0,0.1);
-    font-weight: bold;
-    font-family: ubuntu;
-    letter-spacing: 1px;
-    color: #999;
+#add-post-form button:hover {
+    background-color: #357ae8; 
+    transform: translateY(-2px); 
+}
+
+#add-post-form button:active {
+    transform: translateY(0);
+}
+
+/* =================================================================
+   3. ESTILOS DA LISTA DE POSTS
+   ================================================================= */
+
+#post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+}
+
+#post-list li {
+    background-color: var(--fundo-input); 
+    padding: 1.2rem 1.5rem; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative; /* CRÍTICO para posicionar o botão de exclusão */
+}
+
+#post-list li:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para o TÍTULO (h4) */
+#post-list h4 {
+    font-family: var(--fonte-titulo);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cor-primaria); 
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+/* Estilo para o CONTEÚDO (p) */
+#post-list p {
+    font-size: 1rem;
+    color: var(--cor-texto-clara);
+    margin-bottom: 1rem; 
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
+}
+
+/* Estilo para a DATA/HORA (span.post-meta) */
+#post-list .post-meta {
+    display: block; 
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--cor-data);
+    font-style: italic;
+}
+.modal {
+    position: fixed;
+    z-index: 1000; /* Garante que fique acima de todos os outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro e transparente */
+    display: none; /* Escondido por padrão */
+    justify-content: center;
+    align-items: center;
+}
+
+/* O cartão central do modal */
+.modal-content {
+    background-color: var(--fundo-card); /* Fundo do cartão de post */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px; /* Tamanho controlado */
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+/* Estilo para quando o modal estiver visível */
+.modal.is-active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: var(--cor-texto-clara);
+    margin-bottom: 2rem;
+}
+
+/* Container para os botões */
+.modal-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, background-color 0.2s;
+    width: 100%;
+}
+
+/* Estilo do botão de Cancelar */
+.cancel-button {
+    background-color: var(--fundo-input);
+    color: var(--cor-texto-clara);
+}
+
+.cancel-button:hover {
+    opacity: 0.8;
+}
+
+/* Estilo do botão de Excluir (ação principal) */
+.confirm-button {
+    background-color: var(--cor-delete); /* Vermelho forte */
+    color: white;
+}
+
+.confirm-button:hover {
+    background-color: #e53935;
+}
+
+/* =================================================================
+   4. ESTILOS DO BOTÃO DE EXCLUSÃO
+   ================================================================= */
+
+.delete-btn {
+    position: absolute;
+    top: 50%; 
+    right: 1.5rem; 
+    transform: translateY(-50%);
+    
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: var(--cor-delete); /* Vermelho para exclusão */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50%; 
+    cursor: pointer;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s, background-color 0.2s;
+    user-select: none;
+}
+
+.delete-btn:hover {
+    background-color: #e53935; /* Vermelho mais forte no hover */
+}
+
+/* O botão só aparece quando o mouse está sobre o post (<li>) */
+#post-list li:hover .delete-btn {
+    opacity: 1; 
+}
+
+/* =================================================================
+   5. RESPONSIVIDADE
+   ================================================================= */
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0.5rem; 
+    }
+
+    h1 {
+        font-size: 2.2rem; 
+        margin-bottom: 2rem;
+    }
+
+    .content {
+        padding: 1.5rem; 
+        border-radius: 8px;
+    }
+    
+    #add-post-form {
+        gap: 0.75rem;
+        padding-bottom: 1rem;
+    }
+
+    #add-post-form input[type="text"],
+    #add-post-form button {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    /* Posicionamento do botão em telas menores */
+    .delete-btn {
+        right: 0.5rem; 
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    #post-list h4 {
+        font-size: 1rem;
+    }
+    #post-list p {
+        font-size: 0.85rem;
+    }
 }

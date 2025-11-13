@@ -4,28 +4,41 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ATIVIDADE - REDE SOCIAL</title>
+        <title>FireChat</title>
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="/img/favicon.png" type="image/png">
+        
+        <link rel="stylesheet" href="/styles.css"> 
     </head>
 
     <body>
 
-        <h1>ATIVIDADE - REDE SOCIAL</h1>
+    
+
+        <h1>FIRECHAT</h1>
 
         <div class="content">
             <form id="add-post-form">
-
-            
                 <input type="text" name="tituloPost" id="tituloPost" placeholder="Digite o titulo do post aqui" required>
                 <input type="text" name="conteudoPost" id="conteudoPost" placeholder="Digite o conteúdo do post aqui" required>
-
                 <button>POSTAR</button>
             </form>
+            
             <ul id="post-list"> </ul>
         </div>
         
     </body>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmar Exclusão</h3>
+            <p>Tem certeza de que deseja excluir este post? Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions">
+                <button id="cancel-btn" class="modal-button cancel-button">Cancelar</button>
+                <button id="confirm-delete-btn" class="modal-button confirm-button">Excluir</button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
@@ -35,11 +48,11 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-        // Use 'var' para garantir que 'db' e 'socket' sejam globais
+        // Usa 'var' para garantir que 'db' e 'socket' sejam globais para o app.js
         var db; 
         var socket;
 
-        /* DADOS DE CREDENCIAS DE ACESSO AO FIREBASE */
+        /* DADOS DE CREDENCIAS DE ACESSO AO FIREBASE (Mantenha o seu original) */
         const firebaseConfig = {
             apiKey: "AIzaSyD1JHjhKdzXxU-dno5ExSkB2mA5JQpxqSo",
             authDomain: "novo-app-libri.firebaseapp.com",
@@ -51,19 +64,17 @@
         };
         firebase.initializeApp(firebaseConfig);
         
+        // Inicializa o FireStore e aplica a correção de depreciação
         const firestore = firebase.firestore();
         const settings = {timestampsInSnapshots: true};
         firestore.settings(settings);
         
-        // CORREÇÃO CRÍTICA: Atribui a instância do FireStore à variável global 'db'
+        // Atribuição de escopo
         db = firestore;
-        
-        // CRIAÇÃO DO SOCKET.IO (também global)
         socket = io();
 
         console.log('TESTE DE CONEXÃO COM O FIRESTORE:');
         console.log(db);
-        
     </script>
 
     <script src="app.js"></script>
